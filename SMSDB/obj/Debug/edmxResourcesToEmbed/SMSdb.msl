@@ -53,5 +53,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tm_usr_user">
+      <EntityTypeMapping TypeName="SMSdbModel.tm_usr_user">
+        <MappingFragment StoreEntitySet="tm_usr_user">
+          <ScalarProperty Name="usr_status" ColumnName="usr_status" />
+          <ScalarProperty Name="usr_pws" ColumnName="usr_pws" />
+          <ScalarProperty Name="usr_username" ColumnName="usr_username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

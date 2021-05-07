@@ -54,6 +54,14 @@
           <Property Name="sen_updatedate" Type="datetime" />
           <Property Name="sen_updateterminal" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tm_usr_user">
+          <Key>
+            <PropertyRef Name="usr_username" />
+          </Key>
+          <Property Name="usr_username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usr_pws" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="usr_status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
         <Association Name="FK_tm_sen_sending_tm_mes_message">
           <End Role="tm_mes_message" Type="Self.tm_mes_message" Multiplicity="0..1" />
           <End Role="tm_sen_sent" Type="Self.tm_sen_sent" Multiplicity="*" />
@@ -70,6 +78,7 @@
           <EntitySet Name="tm_cre_credential" EntityType="Self.tm_cre_credential" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tm_mes_message" EntityType="Self.tm_mes_message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tm_sen_sent" EntityType="Self.tm_sen_sent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tm_usr_user" EntityType="Self.tm_usr_user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tm_sen_sending_tm_mes_message" Association="Self.FK_tm_sen_sending_tm_mes_message">
             <End Role="tm_mes_message" EntitySet="tm_mes_message" />
             <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
@@ -104,6 +113,7 @@
             <End Role="tm_mes_message" EntitySet="tm_mes_message" />
             <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
           </AssociationSet>
+          <EntitySet Name="tm_usr_user" EntityType="SMSdbModel.tm_usr_user" />
         </EntityContainer>
         <EntityType Name="tm_mes_message">
           <Key>
@@ -151,6 +161,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tm_usr_user">
+          <Key>
+            <PropertyRef Name="usr_username" />
+          </Key>
+          <Property Name="usr_username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usr_pws" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="usr_status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,6 +224,15 @@
                 <ScalarProperty Name="sen_sent" ColumnName="sen_sent" />
                 <ScalarProperty Name="sen_codmessage" ColumnName="sen_codmessage" />
                 <ScalarProperty Name="sen_codsent" ColumnName="sen_codsent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_usr_user">
+            <EntityTypeMapping TypeName="SMSdbModel.tm_usr_user">
+              <MappingFragment StoreEntitySet="tm_usr_user">
+                <ScalarProperty Name="usr_status" ColumnName="usr_status" />
+                <ScalarProperty Name="usr_pws" ColumnName="usr_pws" />
+                <ScalarProperty Name="usr_username" ColumnName="usr_username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

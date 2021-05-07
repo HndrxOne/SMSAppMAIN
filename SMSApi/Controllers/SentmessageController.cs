@@ -17,7 +17,7 @@ namespace SMSApi.Controllers
         [HttpGet]
         public IHttpActionResult SetMessage(string To, string Message)
         {
-            int objRecords=0;
+            int objRecords = 0;
             try
             {
                 if (ModelState.IsValid)
@@ -25,7 +25,7 @@ namespace SMSApi.Controllers
                     var objCredential = new Domain.Credential().getSpecificRecord(1);
                     var objResponse = new SMS().Send(To, Message, objCredential);
 
-                    if (objResponse.Count>0)
+                    if (objResponse.Count > 0)
                         objRecords = fnSetData(objResponse);
 
                     return Created("Records", objRecords);
@@ -78,14 +78,15 @@ namespace SMSApi.Controllers
             }
         }
 
-        private int fnSetData(IEnumerable<Entities.SMSReturn> objSMSReturn) {
+        private int fnSetData(IEnumerable<Entities.SMSReturn> objSMSReturn)
+        {
             try
             {
-                foreach(var Item in objSMSReturn)
+                foreach (var Item in objSMSReturn)
                 {
                     var objMsg = new Entities.Message();
                     var objSent = new Entities.Sent();
-                    
+
                     objMsg.Mes_codmessage = 0;
                     objMsg.Mes_created = Item.DateCreated;
                     objMsg.Mes_to = Item.To;
@@ -112,7 +113,8 @@ namespace SMSApi.Controllers
 
                 return 1;
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return 0;
             }

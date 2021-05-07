@@ -47,6 +47,7 @@
     <Compile Include="Credential.cs" />
     <Compile Include="SMSReturn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

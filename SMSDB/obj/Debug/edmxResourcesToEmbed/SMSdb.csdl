@@ -25,6 +25,7 @@
       <End Role="tm_mes_message" EntitySet="tm_mes_message" />
       <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
     </AssociationSet>
+    <EntitySet Name="tm_usr_user" EntityType="SMSdbModel.tm_usr_user" />
   </EntityContainer>
   <EntityType Name="tm_mes_message">
     <Key>
@@ -72,4 +73,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="tm_usr_user">
+    <Key>
+      <PropertyRef Name="usr_username" />
+    </Key>
+    <Property Name="usr_username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usr_pws" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="usr_status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
 </Schema>

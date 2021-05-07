@@ -28,5 +28,6 @@ namespace SMSDB
         public virtual DbSet<tm_cre_credential> tm_cre_credential { get; set; }
         public virtual DbSet<tm_mes_message> tm_mes_message { get; set; }
         public virtual DbSet<tm_sen_sent> tm_sen_sent { get; set; }
+        public virtual DbSet<tm_usr_user> tm_usr_user { get; set; }
     }
 }
