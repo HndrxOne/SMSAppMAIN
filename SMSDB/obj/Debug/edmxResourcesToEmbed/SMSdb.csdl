@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMSdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tm_cre_credential">
+    <Key>
+      <PropertyRef Name="cre_codcredential" />
+    </Key>
+    <Property Name="cre_codcredential" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cre_projectid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cre_token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cre_domain" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="cre_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cre_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="cre_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cre_insertdate" Type="DateTime" Precision="3" />
+    <Property Name="cre_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cre_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="cre_updatedate" Type="DateTime" Precision="3" />
+    <Property Name="cre_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="SMSdb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tm_cre_credential" EntityType="Self.tm_cre_credential" />
+    <EntitySet Name="tm_mes_message" EntityType="SMSdbModel.tm_mes_message" />
+    <EntitySet Name="tm_sen_sent" EntityType="SMSdbModel.tm_sen_sent" />
+    <AssociationSet Name="FK_tm_sen_sending_tm_mes_message" Association="SMSdbModel.FK_tm_sen_sending_tm_mes_message">
+      <End Role="tm_mes_message" EntitySet="tm_mes_message" />
+      <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tm_mes_message">
+    <Key>
+      <PropertyRef Name="mes_codmessage" />
+    </Key>
+    <Property Name="mes_codmessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mes_created" Type="DateTime" Precision="3" />
+    <Property Name="mes_to" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mes_message" Type="String" MaxLength="1600" FixedLength="false" Unicode="false" />
+    <Property Name="mes_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="mes_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="mes_insertdate" Type="DateTime" Precision="3" />
+    <Property Name="mes_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mes_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="mes_updatedate" Type="DateTime" Precision="3" />
+    <Property Name="mes_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tm_sen_sent" Relationship="SMSdbModel.FK_tm_sen_sending_tm_mes_message" FromRole="tm_mes_message" ToRole="tm_sen_sent" />
+  </EntityType>
+  <EntityType Name="tm_sen_sent">
+    <Key>
+      <PropertyRef Name="sen_codsent" />
+    </Key>
+    <Property Name="sen_codsent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sen_codmessage" Type="Int32" />
+    <Property Name="sen_sent" Type="DateTime" Precision="3" />
+    <Property Name="sen_twiliocode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sen_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="sen_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sen_insertdate" Type="DateTime" Precision="3" />
+    <Property Name="sen_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sen_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sen_updatedate" Type="DateTime" Precision="3" />
+    <Property Name="sen_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tm_mes_message" Relationship="SMSdbModel.FK_tm_sen_sending_tm_mes_message" FromRole="tm_sen_sent" ToRole="tm_mes_message" />
+  </EntityType>
+  <Association Name="FK_tm_sen_sending_tm_mes_message">
+    <End Type="SMSdbModel.tm_mes_message" Role="tm_mes_message" Multiplicity="0..1" />
+    <End Type="SMSdbModel.tm_sen_sent" Role="tm_sen_sent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tm_mes_message">
+        <PropertyRef Name="mes_codmessage" />
+      </Principal>
+      <Dependent Role="tm_sen_sent">
+        <PropertyRef Name="sen_codmessage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

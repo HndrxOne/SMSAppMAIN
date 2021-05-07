@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SMSdbModelStoreContainer" CdmEntityContainer="SMSdb">
+    <EntitySetMapping Name="tm_cre_credential">
+      <EntityTypeMapping TypeName="SMSdbModel.tm_cre_credential">
+        <MappingFragment StoreEntitySet="tm_cre_credential">
+          <ScalarProperty Name="cre_codcredential" ColumnName="cre_codcredential" />
+          <ScalarProperty Name="cre_projectid" ColumnName="cre_projectid" />
+          <ScalarProperty Name="cre_token" ColumnName="cre_token" />
+          <ScalarProperty Name="cre_domain" ColumnName="cre_domain" />
+          <ScalarProperty Name="cre_phone" ColumnName="cre_phone" />
+          <ScalarProperty Name="cre_status" ColumnName="cre_status" />
+          <ScalarProperty Name="cre_insertuser" ColumnName="cre_insertuser" />
+          <ScalarProperty Name="cre_insertdate" ColumnName="cre_insertdate" />
+          <ScalarProperty Name="cre_insertterminal" ColumnName="cre_insertterminal" />
+          <ScalarProperty Name="cre_updateuser" ColumnName="cre_updateuser" />
+          <ScalarProperty Name="cre_updatedate" ColumnName="cre_updatedate" />
+          <ScalarProperty Name="cre_updateterminal" ColumnName="cre_updateterminal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_mes_message">
+      <EntityTypeMapping TypeName="SMSdbModel.tm_mes_message">
+        <MappingFragment StoreEntitySet="tm_mes_message">
+          <ScalarProperty Name="mes_updateterminal" ColumnName="mes_updateterminal" />
+          <ScalarProperty Name="mes_updatedate" ColumnName="mes_updatedate" />
+          <ScalarProperty Name="mes_updateuser" ColumnName="mes_updateuser" />
+          <ScalarProperty Name="mes_insertterminal" ColumnName="mes_insertterminal" />
+          <ScalarProperty Name="mes_insertdate" ColumnName="mes_insertdate" />
+          <ScalarProperty Name="mes_insertuser" ColumnName="mes_insertuser" />
+          <ScalarProperty Name="mes_status" ColumnName="mes_status" />
+          <ScalarProperty Name="mes_message" ColumnName="mes_message" />
+          <ScalarProperty Name="mes_to" ColumnName="mes_to" />
+          <ScalarProperty Name="mes_created" ColumnName="mes_created" />
+          <ScalarProperty Name="mes_codmessage" ColumnName="mes_codmessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_sen_sent">
+      <EntityTypeMapping TypeName="SMSdbModel.tm_sen_sent">
+        <MappingFragment StoreEntitySet="tm_sen_sent">
+          <ScalarProperty Name="sen_updateterminal" ColumnName="sen_updateterminal" />
+          <ScalarProperty Name="sen_updatedate" ColumnName="sen_updatedate" />
+          <ScalarProperty Name="sen_updateuser" ColumnName="sen_updateuser" />
+          <ScalarProperty Name="sen_insertterminal" ColumnName="sen_insertterminal" />
+          <ScalarProperty Name="sen_insertdate" ColumnName="sen_insertdate" />
+          <ScalarProperty Name="sen_insertuser" ColumnName="sen_insertuser" />
+          <ScalarProperty Name="sen_status" ColumnName="sen_status" />
+          <ScalarProperty Name="sen_twiliocode" ColumnName="sen_twiliocode" />
+          <ScalarProperty Name="sen_sent" ColumnName="sen_sent" />
+          <ScalarProperty Name="sen_codmessage" ColumnName="sen_codmessage" />
+          <ScalarProperty Name="sen_codsent" ColumnName="sen_codsent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

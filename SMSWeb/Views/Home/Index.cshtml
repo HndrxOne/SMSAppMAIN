@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Entities.MessageGrid>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Send", "Home", FormMethod.Post))
+{
+    <form class="form-horizontal">
+        <br />
+        <div class="box-body center-block">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label for="txtPhones" class="control-label">Phone(s): </label>
+                <input type="text" id="txtPhones" name="To" class="form-control input-lg" required />
+            </div>
+            <div class="form-group">
+                <label for="txtMsg" class="control-label">Message: </label>
+                <textarea id="txtMsg" name="Message" class="form-control input-lg" required></textarea>
+            </div>
+        </div>
+        <div class="box-footer">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <input type="submit" value="Send" class="btn btn-primary btn-block btn-lg" />
+                </div>
+                @*<div class="col-md-6">
+                        <a class="btn btn-warning btn-block btn-lg" href="@Url.Action("Logout","Home")" role="button">Cerrar Sesión</a>
+                    </div>*@
+            </div>
+        </div>
+        <br />
+        <table id="dtDetalle" class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th style="display:none">@Html.DisplayNameFor(model => model.Mes_codmessage)</th>
+                    <th>@Html.DisplayNameFor(model => model.Mes_to)</th>
+                    <th>@Html.DisplayNameFor(model => model.Mes_message)</th>
+                    <th>@Html.DisplayNameFor(model => model.Sen_sent)</th>
+                    <th>@Html.DisplayNameFor(model => model.Sen_twiliocode)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="display:none">@Html.DisplayFor(modelItem => item.Mes_codmessage)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Mes_to)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Mes_message)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sen_sent)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sen_twiliocode)</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </form>
+    @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                $('#dtDetalle').DataTable({
+                    'sDom': 'Bfrtip',
+                    'buttons': ['copyHtml5'
+                        , { extend: 'excelHtml5', title: "Phones" }
+                        , { extend: 'csvHtml5', title: "Phones" }
+                        , { extend: 'pdfHtml5', title: "Phones" }],
+                    "language": { "search": "Search:" }
+                });
+            });
+
+        </script>
+    }
+
+}
+@DateTime.Now
+

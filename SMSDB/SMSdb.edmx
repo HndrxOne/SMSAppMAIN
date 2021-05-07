@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMSdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tm_cre_credential">
+          <Key>
+            <PropertyRef Name="cre_codcredential" />
+          </Key>
+          <Property Name="cre_codcredential" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cre_projectid" Type="varchar" MaxLength="50" />
+          <Property Name="cre_token" Type="varchar" MaxLength="50" />
+          <Property Name="cre_domain" Type="varchar" MaxLength="150" />
+          <Property Name="cre_phone" Type="varchar" MaxLength="20" />
+          <Property Name="cre_status" Type="char" MaxLength="1" />
+          <Property Name="cre_insertuser" Type="varchar" MaxLength="30" />
+          <Property Name="cre_insertdate" Type="datetime" />
+          <Property Name="cre_insertterminal" Type="varchar" MaxLength="50" />
+          <Property Name="cre_updateuser" Type="varchar" MaxLength="30" />
+          <Property Name="cre_updatedate" Type="datetime" />
+          <Property Name="cre_updateterminal" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tm_mes_message">
+          <Key>
+            <PropertyRef Name="mes_codmessage" />
+          </Key>
+          <Property Name="mes_codmessage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mes_created" Type="datetime" />
+          <Property Name="mes_to" Type="varchar" MaxLength="20" />
+          <Property Name="mes_message" Type="varchar" MaxLength="1600" />
+          <Property Name="mes_status" Type="char" MaxLength="1" />
+          <Property Name="mes_insertuser" Type="varchar" MaxLength="30" />
+          <Property Name="mes_insertdate" Type="datetime" />
+          <Property Name="mes_insertterminal" Type="varchar" MaxLength="50" />
+          <Property Name="mes_updateuser" Type="varchar" MaxLength="30" />
+          <Property Name="mes_updatedate" Type="datetime" />
+          <Property Name="mes_updateterminal" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tm_sen_sent">
+          <Key>
+            <PropertyRef Name="sen_codsent" />
+          </Key>
+          <Property Name="sen_codsent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sen_codmessage" Type="int" />
+          <Property Name="sen_sent" Type="datetime" />
+          <Property Name="sen_twiliocode" Type="varchar" MaxLength="100" />
+          <Property Name="sen_status" Type="char" MaxLength="1" />
+          <Property Name="sen_insertuser" Type="varchar" MaxLength="30" />
+          <Property Name="sen_insertdate" Type="datetime" />
+          <Property Name="sen_insertterminal" Type="varchar" MaxLength="50" />
+          <Property Name="sen_updateuser" Type="varchar" MaxLength="30" />
+          <Property Name="sen_updatedate" Type="datetime" />
+          <Property Name="sen_updateterminal" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tm_sen_sending_tm_mes_message">
+          <End Role="tm_mes_message" Type="Self.tm_mes_message" Multiplicity="0..1" />
+          <End Role="tm_sen_sent" Type="Self.tm_sen_sent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_mes_message">
+              <PropertyRef Name="mes_codmessage" />
+            </Principal>
+            <Dependent Role="tm_sen_sent">
+              <PropertyRef Name="sen_codmessage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SMSdbModelStoreContainer">
+          <EntitySet Name="tm_cre_credential" EntityType="Self.tm_cre_credential" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tm_mes_message" EntityType="Self.tm_mes_message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tm_sen_sent" EntityType="Self.tm_sen_sent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tm_sen_sending_tm_mes_message" Association="Self.FK_tm_sen_sending_tm_mes_message">
+            <End Role="tm_mes_message" EntitySet="tm_mes_message" />
+            <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMSdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tm_cre_credential">
+          <Key>
+            <PropertyRef Name="cre_codcredential" />
+          </Key>
+          <Property Name="cre_codcredential" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cre_projectid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cre_token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cre_domain" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cre_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cre_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="cre_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cre_insertdate" Type="DateTime" Precision="3" />
+          <Property Name="cre_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cre_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cre_updatedate" Type="DateTime" Precision="3" />
+          <Property Name="cre_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SMSdb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tm_cre_credential" EntityType="Self.tm_cre_credential" />
+          <EntitySet Name="tm_mes_message" EntityType="SMSdbModel.tm_mes_message" />
+          <EntitySet Name="tm_sen_sent" EntityType="SMSdbModel.tm_sen_sent" />
+          <AssociationSet Name="FK_tm_sen_sending_tm_mes_message" Association="SMSdbModel.FK_tm_sen_sending_tm_mes_message">
+            <End Role="tm_mes_message" EntitySet="tm_mes_message" />
+            <End Role="tm_sen_sent" EntitySet="tm_sen_sent" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tm_mes_message">
+          <Key>
+            <PropertyRef Name="mes_codmessage" />
+          </Key>
+          <Property Name="mes_codmessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mes_created" Type="DateTime" Precision="3" />
+          <Property Name="mes_to" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mes_message" Type="String" MaxLength="1600" FixedLength="false" Unicode="false" />
+          <Property Name="mes_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="mes_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mes_insertdate" Type="DateTime" Precision="3" />
+          <Property Name="mes_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mes_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mes_updatedate" Type="DateTime" Precision="3" />
+          <Property Name="mes_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tm_sen_sent" Relationship="SMSdbModel.FK_tm_sen_sending_tm_mes_message" FromRole="tm_mes_message" ToRole="tm_sen_sent" />
+        </EntityType>
+        <EntityType Name="tm_sen_sent">
+          <Key>
+            <PropertyRef Name="sen_codsent" />
+          </Key>
+          <Property Name="sen_codsent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sen_codmessage" Type="Int32" />
+          <Property Name="sen_sent" Type="DateTime" Precision="3" />
+          <Property Name="sen_twiliocode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sen_status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="sen_insertuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sen_insertdate" Type="DateTime" Precision="3" />
+          <Property Name="sen_insertterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sen_updateuser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sen_updatedate" Type="DateTime" Precision="3" />
+          <Property Name="sen_updateterminal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tm_mes_message" Relationship="SMSdbModel.FK_tm_sen_sending_tm_mes_message" FromRole="tm_sen_sent" ToRole="tm_mes_message" />
+        </EntityType>
+        <Association Name="FK_tm_sen_sending_tm_mes_message">
+          <End Type="SMSdbModel.tm_mes_message" Role="tm_mes_message" Multiplicity="0..1" />
+          <End Type="SMSdbModel.tm_sen_sent" Role="tm_sen_sent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tm_mes_message">
+              <PropertyRef Name="mes_codmessage" />
+            </Principal>
+            <Dependent Role="tm_sen_sent">
+              <PropertyRef Name="sen_codmessage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMSdbModelStoreContainer" CdmEntityContainer="SMSdb">
+          <EntitySetMapping Name="tm_cre_credential">
+            <EntityTypeMapping TypeName="SMSdbModel.tm_cre_credential">
+              <MappingFragment StoreEntitySet="tm_cre_credential">
+                <ScalarProperty Name="cre_codcredential" ColumnName="cre_codcredential" />
+                <ScalarProperty Name="cre_projectid" ColumnName="cre_projectid" />
+                <ScalarProperty Name="cre_token" ColumnName="cre_token" />
+                <ScalarProperty Name="cre_domain" ColumnName="cre_domain" />
+                <ScalarProperty Name="cre_phone" ColumnName="cre_phone" />
+                <ScalarProperty Name="cre_status" ColumnName="cre_status" />
+                <ScalarProperty Name="cre_insertuser" ColumnName="cre_insertuser" />
+                <ScalarProperty Name="cre_insertdate" ColumnName="cre_insertdate" />
+                <ScalarProperty Name="cre_insertterminal" ColumnName="cre_insertterminal" />
+                <ScalarProperty Name="cre_updateuser" ColumnName="cre_updateuser" />
+                <ScalarProperty Name="cre_updatedate" ColumnName="cre_updatedate" />
+                <ScalarProperty Name="cre_updateterminal" ColumnName="cre_updateterminal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_mes_message">
+            <EntityTypeMapping TypeName="SMSdbModel.tm_mes_message">
+              <MappingFragment StoreEntitySet="tm_mes_message">
+                <ScalarProperty Name="mes_updateterminal" ColumnName="mes_updateterminal" />
+                <ScalarProperty Name="mes_updatedate" ColumnName="mes_updatedate" />
+                <ScalarProperty Name="mes_updateuser" ColumnName="mes_updateuser" />
+                <ScalarProperty Name="mes_insertterminal" ColumnName="mes_insertterminal" />
+                <ScalarProperty Name="mes_insertdate" ColumnName="mes_insertdate" />
+                <ScalarProperty Name="mes_insertuser" ColumnName="mes_insertuser" />
+                <ScalarProperty Name="mes_status" ColumnName="mes_status" />
+                <ScalarProperty Name="mes_message" ColumnName="mes_message" />
+                <ScalarProperty Name="mes_to" ColumnName="mes_to" />
+                <ScalarProperty Name="mes_created" ColumnName="mes_created" />
+                <ScalarProperty Name="mes_codmessage" ColumnName="mes_codmessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tm_sen_sent">
+            <EntityTypeMapping TypeName="SMSdbModel.tm_sen_sent">
+              <MappingFragment StoreEntitySet="tm_sen_sent">
+                <ScalarProperty Name="sen_updateterminal" ColumnName="sen_updateterminal" />
+                <ScalarProperty Name="sen_updatedate" ColumnName="sen_updatedate" />
+                <ScalarProperty Name="sen_updateuser" ColumnName="sen_updateuser" />
+                <ScalarProperty Name="sen_insertterminal" ColumnName="sen_insertterminal" />
+                <ScalarProperty Name="sen_insertdate" ColumnName="sen_insertdate" />
+                <ScalarProperty Name="sen_insertuser" ColumnName="sen_insertuser" />
+                <ScalarProperty Name="sen_status" ColumnName="sen_status" />
+                <ScalarProperty Name="sen_twiliocode" ColumnName="sen_twiliocode" />
+                <ScalarProperty Name="sen_sent" ColumnName="sen_sent" />
+                <ScalarProperty Name="sen_codmessage" ColumnName="sen_codmessage" />
+                <ScalarProperty Name="sen_codsent" ColumnName="sen_codsent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

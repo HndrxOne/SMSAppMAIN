@@ -1,0 +1,12 @@
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\SMSDB.dll.config
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\SMSDB.dll
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\SMSDB.pdb
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\EntityFramework.dll
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\EntityFramework.xml
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\obj\Debug\SMSDB.csproj.CoreCompileInputs.cache
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\obj\Debug\SMSDB.csproj.CopyComplete
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\obj\Debug\SMSDB.dll
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\obj\Debug\SMSDB.pdb
+C:\Users\jlina0\source\repos\SMSApp\SMSDB\obj\Debug\SMSDB.csprojAssemblyReference.cache
